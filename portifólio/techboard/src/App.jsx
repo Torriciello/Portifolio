@@ -1,7 +1,8 @@
 import './App.css'
-import {Tema} from './componentes/Tema'
-import { FormularioDeEvento } from './componentes/FormularioDeEvento'
 import { Banner } from './componentes/Banner'
+import { CardEvento } from './componentes/CardEvento'
+import { FormularioDeEvento } from './componentes/FormularioDeEvento'
+import { Tema } from './componentes/Tema'
 // no react, componentes são FUNÇÕES
 
 function App() {
@@ -10,27 +11,35 @@ function App() {
     {
       id: 1,
       nome: 'front-end'
-    }, 
+    },
     {
       id: 2,
-      nome: 'backend'
+      nome: 'back-end'
     },
     {
-      id: 3, 
-      nome: 'Devops'
+      id: 3,
+      nome: 'devops'
     },
     {
-      id: 4, 
-      nome: 'Inteligencia Artificial'
+      id: 4,
+      nome: 'inteligência artificial`'
     },
     {
-      id: 5, 
-      nome: 'Data Science'
-    }
-    ,
+      id: 5,
+      nome: 'data science'
+    },
     {
-      id: 6, 
-      nome: 'Clound'
+      id: 6,
+      nome: 'cloud'
+    },
+  ]
+
+  const eventos = [
+    {
+      capa: 'https://raw.githubusercontent.com/viniciosneves/tecboard-assets/refs/heads/main/imagem_1.png',
+      tema: temas[0],
+      data: new Date(),
+      titulo: 'Mulheres no Front'
     }
   ]
 
@@ -40,25 +49,31 @@ function App() {
         <img src="/logo.png" alt="" />
       </header>
       <Banner />
-      <FormularioDeEvento />
-      <section>
-        <Tema tema={temas[0]}/>
+      <FormularioDeEvento temas={temas}/>
+      {temas.map(function (item) {
+        return (
+          <section key={item.id}>
+            <Tema tema={item} />
+            <CardEvento evento={eventos[0]}/>
+          </section>
+        )
+      })}
+
+      {/* <section>
+        <Tema tema={temas[1]} />
       </section>
       <section>
-        <Tema tema={temas[1]}/>
+        <Tema tema={temas[2]} />
       </section>
       <section>
-        <Tema tema={temas[2]}/>
+        <Tema tema={temas[3]} />
       </section>
       <section>
-        <Tema tema={temas[3]}/>
+        <Tema tema={temas[4]} />
       </section>
       <section>
-        <Tema tema={temas[4]}/>
-      </section>
-      <section>
-        <Tema tema={temas[5]}/>
-      </section>
+        <Tema tema={temas[5]} />
+      </section> */}
     </main>
   )
 }

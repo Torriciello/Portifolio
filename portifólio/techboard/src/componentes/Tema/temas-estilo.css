@@ -1,4 +1,9 @@
 .titulo {
   font-family: "Orbitron", sans-serif;
   color: #ffffff;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 125%;
+  letter-spacing: 10%;
+  text-transform: uppercase;
 }
