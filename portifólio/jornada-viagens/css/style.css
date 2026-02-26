@@ -37,5 +37,11 @@ button {
 }
 
 h1 {
-  color: var(--button-primary-color);
+  font-family: "Montserrat";
+  font-weight: var(--title-weigth);
+  color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+header {
 }
