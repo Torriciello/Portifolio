@@ -13,6 +13,7 @@ import com.login.infra.security.TokenService;
 
 import jakarta.validation.Valid;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
