@@ -1,7 +1,5 @@
-import './header.style.css'
+import "./header.style.css";
 
-export function Header ({ children }) {
-    return (<header className="header">
-        {children}
-    </header>)
+export function Header({ children }) {
+  return <header className="header">{children}</header>;
 }
