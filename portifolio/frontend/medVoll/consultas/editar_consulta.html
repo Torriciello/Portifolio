@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Consulta</title>
+    <link rel="stylesheet" href="../css/editar_consultas.estilo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+    <header class="topbar">
+        <button class="back"><i class="fa-solid fa-chevron-left"></i></button>
+        <h2>Editar</h2>
+        <button class="menu"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+    </header>
+
+    <main class="form-container">
+        <section class="form-section">
+            <h3 class="section-title">Envolvidos</h3>
+            
+            <div class="input-group">
+                <label>Nome do paciente</label>
+                <div class="input-wrapper">
+                    <input type="text" value="Márcia de Paula" readonly>
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Nome do médico</label>
+                <div class="input-wrapper">
+                    <input type="text" value="Brenda de Almeida" readonly>
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h3 class="section-title">Data e horário</h3>
+            
+            <div class="input-group">
+                <label>Data da consulta</label>
+                <div class="input-wrapper">
+                    <input type="text" value="24/08/2022" readonly>
+                    <i class="fa-regular fa-calendar-days"></i>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Horário da consulta</label>
+                <div class="input-wrapper">
+                    <input type="text" value="14h00" readonly>
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="form-actions">
+        <button class="btn-primary">Reagendar consulta</button>
+        <button class="btn-secondary">Cancelar</button>
+    </footer>
+
+</body>
+</html>

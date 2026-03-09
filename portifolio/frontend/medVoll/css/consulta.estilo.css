@@ -1,0 +1,180 @@
+/* Configurações de Reset e Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  background-color: #fff;
+  color: #333;
+  padding-bottom: 90px; /* Espaço para o botão fixo no rodapé não cobrir conteúdo */
+}
+
+/* --- Topbar (Header) --- */
+.topbar {
+  background-color: #003057; /* Azul marinho escuro */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.topbar h2 {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.topbar button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* --- Busca --- */
+.search-container {
+  padding: 15px;
+  position: relative;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 12px 40px 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+/* --- Grupo de Datas --- */
+.date-group {
+  padding: 0 15px;
+}
+
+.date-title {
+  color: #31a4ff; /* Azul vibrante */
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 10px 0 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.date-title span {
+  font-weight: normal;
+}
+
+/* --- Item da Consulta (Card) --- */
+.appointment-item {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+}
+
+.appointment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.appointment-header strong {
+  font-size: 1.1rem;
+  color: #003057;
+}
+
+.appointment-details {
+  padding-left: 2px;
+}
+
+.doctor-name {
+  color: #003057;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 2px;
+}
+
+.doctor-info {
+  color: #777;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+.patient-name {
+  color: #003057;
+  font-weight: 500;
+  margin-bottom: 0px;
+}
+
+.patient-label {
+  color: #999;
+  font-size: 0.8rem;
+}
+
+/* --- Ações e Expansão --- */
+.appointment-actions {
+  display: none; /* Escondido por padrão */
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Quando o item tem a classe .expanded, os botões aparecem */
+.appointment-item.expanded .appointment-actions {
+  display: flex;
+}
+
+.btn-outline {
+  flex: 1;
+  background: white;
+  border: 1.5px solid #003057;
+  color: #003057;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-outline:active {
+  background-color: #f0f0f0;
+}
+
+/* --- Rodapé e Botão Principal --- */
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  padding: 15px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  width: 100%;
+  background-color: #003057;
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}

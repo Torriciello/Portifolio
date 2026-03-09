@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #f1f1f1;
+}
+
+.topbar {
+  background: #1a4463;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.topbar h2 {
+  font-size: 20px;
+}
+
+.topbar button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.container {
+  padding: 15px;
+}
+
+.search-box {
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 16px;
+}
+
+.search-box i {
+  color: #555;
+}
+
+.letter {
+  margin: 10px 0;
+  font-weight: bold;
+  color: #1a4463;
+}
+
+.paciente {
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.paciente-info h3 {
+  font-size: 16px;
+  color: #333;
+}
+
+.paciente-info p {
+  font-size: 14px;
+  color: #777;
+}
+
+.paciente-details {
+  background: white;
+  padding: 10px 0 15px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.paciente-details p {
+  margin-bottom: 5px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.actions button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #1a4463;
+  background: white;
+  color: #1a4463;
+  cursor: pointer;
+}
+
+.actions button:hover {
+  background: #1a4463;
+  color: white;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  background: #f1f1f1;
+}
+
+.add {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  background: #1a4463;
+  color: white;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.add:hover {
+  background: #153750;
+}

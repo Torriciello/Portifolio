@@ -1,0 +1,126 @@
+/* Overlay para escurecer o fundo da lista de consultas */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.cancel-modal {
+  background: white;
+  width: 90%;
+  max-width: 400px;
+  padding: 25px;
+  border-radius: 12px;
+}
+
+.modal-title {
+  color: #003057;
+  font-size: 1.3rem;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* Card com detalhe da consulta */
+.appointment-summary {
+  display: flex;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 25px;
+}
+
+.accent-bar {
+  width: 8px;
+  background-color: #87ceeb; /* Azul claro lateral da imagem */
+}
+
+.summary-details {
+  padding: 12px 15px;
+}
+
+.date-time {
+  font-weight: bold;
+  color: #003057;
+  margin-bottom: 5px;
+}
+.doctor-name {
+  font-weight: bold;
+  color: #003057;
+  font-size: 0.95rem;
+}
+.doctor-spec {
+  color: #666;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+.patient-name {
+  color: #003057;
+  font-size: 0.95rem;
+}
+.patient-label {
+  color: #999;
+  font-size: 0.8rem;
+}
+
+/* Seção de Motivo */
+.reason-section label {
+  display: block;
+  color: #333;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+.select-wrapper {
+  position: relative;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.select-wrapper select {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: #333;
+  appearance: none; /* Remove seta padrão do navegador */
+  background: transparent;
+}
+
+.select-wrapper i {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Botões */
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.btn-confirm-cancel {
+  background-color: #94a3b8; /* Cor cinza desabilitada */
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.btn-back {
+  background: transparent;
+  border: 2px solid #003057;
+  color: #003057;
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: bold;
+}

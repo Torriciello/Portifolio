@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cancelamento de Consulta</title>
+    <link rel="stylesheet" href="../css/cancelamento_consulta.estilo.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="modal-overlay">
+      <div class="cancel-modal">
+        <h2 class="modal-title">Deseja cancelar esta consulta?</h2>
+
+        <div class="appointment-summary">
+          <div class="accent-bar"></div>
+          <div class="summary-details">
+            <p class="date-time">18/08/2022 às 10h00</p>
+            <p class="doctor-name">Brenda de Almeida</p>
+            <p class="doctor-spec">Ortopedista | CRM 47.889-PR</p>
+            <p class="patient-name">Pâmela Lopes</p>
+            <p class="patient-label">Paciente</p>
+          </div>
+        </div>
+
+        <div class="reason-section">
+          <label for="reason">Selecione abaixo o motivo do cancelamento:</label>
+          <div class="select-wrapper">
+            <select id="reason">
+              <option value="" disabled selected>Motivo do cancelamento</option>
+              <option value="imprevisto">Imprevisto pessoal</option>
+              <option value="imprevisto">Médico cancelou</option>
+              <option value="imprevisto">Paciente cancelou</option>
+              <option value="horario">Conflito de horário</option>
+            </select>
+            <i class="fa-solid fa-caret-down"></i>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn-confirm-cancel" disabled>
+            Confirmar cancelamento
+          </button>
+          <button class="btn-back">Voltar</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

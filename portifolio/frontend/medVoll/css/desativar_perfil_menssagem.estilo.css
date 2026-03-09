@@ -1,0 +1,134 @@
+/* Configurações Globais */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container do Modal */
+.modal-container {
+  background-color: #fff;
+  width: 100%;
+  max-width: 400px;
+  padding: 30px 20px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Ícone de Perfil (Simulado com CSS) */
+.profile-icon-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.profile-icon {
+  width: 80px;
+  height: 80px;
+  background-color: #003057; /* Azul Escuro */
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashed-user {
+  width: 30px;
+  height: 40px;
+  border: 2px dashed #fff;
+  border-radius: 50% 50% 0 0;
+}
+
+/* Tipografia */
+.title {
+  color: #003057;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Card do Nome */
+.profile-card {
+  display: flex;
+  background-color: #f8f9fa;
+  margin-bottom: 25px;
+  text-align: left;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.blue-accent {
+  width: 6px;
+  background-color: #87ceeb; /* Azul claro lateral */
+}
+
+.profile-info {
+  padding: 10px 15px;
+}
+
+.name {
+  display: block;
+  font-weight: bold;
+  color: #003057;
+  font-size: 1.1rem;
+}
+
+.specialty {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Texto de rodapé */
+.info-text p {
+  color: #444;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+/* Botões */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary {
+  background-color: #003057;
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #001f3a;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #003057;
+  border: 2px solid #003057;
+}
+
+.btn-secondary:hover {
+  background-color: #f0f4f8;
+}

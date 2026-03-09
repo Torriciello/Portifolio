@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escolher Data</title>
+    <link rel="stylesheet" href="../css/escolha_data.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="modal-overlay">
+      <div class="calendar-modal">
+        <header class="calendar-header">
+          <button class="nav-btn" id="prev-month">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <h3 class="month-year js-month">Agosto, 2022</h3>
+          <button class="nav-btn" id="next-month">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </header>
+
+        <div class="weekdays">
+          <span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span
+          ><span>S</span><span>S</span>
+        </div>
+
+        <div class="days-grid js-days-container">
+          <span class="day prev-month">31</span>
+          <span class="day">1</span><span class="day">2</span
+          ><span class="day">3</span> <span class="day">4</span
+          ><span class="day">5</span><span class="day">6</span>
+          <span class="day">7</span><span class="day">8</span
+          ><span class="day">9</span> <span class="day">10</span
+          ><span class="day">11</span><span class="day">12</span>
+          <span class="day">13</span><span class="day">14</span
+          ><span class="day">15</span> <span class="day">16</span
+          ><span class="day selected">17</span>
+          <span class="day selected">18</span
+          ><span class="day selected">19</span>
+          <span class="day selected">20</span><span class="day">21</span>
+          <span class="day">22</span><span class="day selected">23</span>
+          <span class="day selected">24</span><span class="day">25</span>
+          <span class="day selected">26</span
+          ><span class="day selected">27</span> <span class="day">28</span
+          ><span class="day selected">29</span> <span class="day">30</span
+          ><span class="day selected">31</span>
+          <span class="day next-month">1</span
+          ><span class="day next-month">2</span>
+          <span class="day next-month">3</span>
+        </div>
+
+        <footer class="calendar-footer">
+          <div class="selection-info">
+            <p class="label">Data selecionada</p>
+            <p class="selected-value js-selected-date">
+              Nenhuma data selecionada
+            </p>
+          </div>
+
+          <div class="modal-actions">
+            <button class="btn-confirm" id="confirm-date" disabled>
+              Confirmar data
+            </button>
+            <button class="btn-cancel" id="close-modal">Cancelar</button>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script src="../js/escolha_data.js"></script>
+  </body>
+</html>

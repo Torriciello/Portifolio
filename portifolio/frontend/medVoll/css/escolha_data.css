@@ -1,0 +1,126 @@
+/* Fundo escurecido que cobre a tela toda */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Caixa do Calendário */
+.calendar-modal {
+  background-color: #fff;
+  width: 90%;
+  max-width: 350px;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Cabeçalho do Mês */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-header h3 {
+  color: #003057;
+  font-size: 1.2rem;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Grade de Dias (O segredo do layout) */
+.weekdays,
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7 colunas iguais */
+  text-align: center;
+}
+
+.weekdays span {
+  font-weight: bold;
+  color: #003057;
+  padding-bottom: 10px;
+  font-size: 0.85rem;
+}
+
+.day {
+  padding: 10px 0;
+  margin: 2px;
+  background-color: #e9ecef;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: #495057;
+  border: 2px solid transparent;
+}
+
+/* Dias de outros meses */
+.day.prev-month,
+.day.next-month {
+  color: #adb5bd;
+  background-color: #f8f9fa;
+}
+
+/* Estilo para datas com consulta (Borda azul na imagem) */
+.day.selected {
+  border-color: #003057;
+  background-color: #fff;
+  color: #003057;
+  font-weight: bold;
+}
+
+/* Rodapé do Modal */
+.selection-info {
+  margin: 20px 0;
+}
+
+.selection-info .label {
+  color: #003057;
+  font-size: 0.9rem;
+}
+
+.selection-info .selected-value {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-top: 5px;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-confirm {
+  background-color: #94a3b8; /* Cor cinza desabilitado da imagem */
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.btn-cancel {
+  background-color: transparent;
+  border: 2px solid #003057;
+  color: #003057;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
