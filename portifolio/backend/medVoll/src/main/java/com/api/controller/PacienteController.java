@@ -1,8 +1,14 @@
 package com.api.controller;
 
+import org.springdoc.core.converters.models.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.api.domain.patient.Patient;
@@ -26,19 +32,21 @@ public class PacienteController {
         return ResponseEntity.ok(new PatientDetails(novoPaciente));
     }
 
-    // @GetMapping("/{id}")
-    // public ResponseEntity listar(@PathVariable Long id) {
-    // var paciente = pacienteService.getReferenceById(id);
-    // return ResponseEntity.ok(new DadosDetalhamentoPaciente(paciente));
-    // }
+    @GetMapping("/{id}")
+    public ResponseEntity<PatientDetails> list(@PathVariable Long id) {
+        Patient patient = pacienteService.list(id);
+        return ResponseEntity.ok(new PatientDetails(patient));
+    }
 
-    // @GetMapping
-    // public ResponseEntity<Page<Patient>> listar(
-    // @PageableDefault(size = 10, sort = { "nome" }) Pageable paginacao) {
-    // var page =
-    // pacienteService.findAllByAtivoTrue(paginacao).map(DadosListagemPaciente::new);
-    // return ResponseEntity.ok(page);
-    // }
+    @GetMapping
+    public ResponseEntity<Page<PatientDetails>> listar(
+        @PageableDefault(size = 10, sort = { "name" }) Pageable paginacao) {
+
+        var page = pacienteService.findAllByAtivoTrue(paginacao)
+                .map(PatientDetails::new);
+
+        return ResponseEntity.ok(page);
+    }
 
     // @PutMapping
     // @Transactional
