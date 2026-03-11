@@ -6,16 +6,19 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Table(name = "patients")
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Patient {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -48,13 +51,12 @@ public class Patient {
             this.phone = updatePatient.telefone();
         }
         if (updatePatient.address() != null) {
-            this.address.updateAdress(address);
+            this.address.updateAdress(updatePatient.address());
         }
     }
 
     public void excluir() {
         this.ativo = false;
     }
-
 
 }

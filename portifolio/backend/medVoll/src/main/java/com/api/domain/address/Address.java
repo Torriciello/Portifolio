@@ -26,32 +26,44 @@ public class Address {
         this.neighborhood = dateAdress.neighborhood();
         this.cep = dateAdress.cep();
         this.uf = dateAdress.uf();
-        this.locality = dateAdress.city();
+        this.locality = dateAdress.locality();
+        this.city = dateAdress.city();
         this.number = dateAdress.number();
         this.complement = dateAdress.complement();
     }
 
-    public void updateAdress(Address address) {
-        if (address.getPublicPlace() != null) {
-            this.publicPlace = address.getPublicPlace();
+    public void updateAdress(DateAdress address) {
+
+        if (address.publicPlace() != null) {
+            this.publicPlace = address.publicPlace();
         }
-        if (address.getNeighborhood() != null) {
-            this.neighborhood = address.getNeighborhood();
+
+        if (address.neighborhood() != null) {
+            this.neighborhood = address.neighborhood();
         }
-        if (address.getCep() != null) {
-            this.cep = address.getCep();
+
+        if (address.cep() != null) {
+            this.cep = address.cep();
         }
-        if (address.getUf() != null) {
-            this.uf = address.getUf();
+
+        if (address.uf() != null) {
+            this.uf = address.uf();
         }
-        if (address.getCity() != null) {
-            this.city = address.getCity();
+
+        if (address.locality() != null) {
+            this.locality = address.locality();
         }
-        if (address.getNumber() != null) {
-            this.number = address.getNumber();
+
+        if (address.city() != null) {
+            this.city = address.city();
         }
-        if (address.getComplement() != null) {
-            this.complement = address.getComplement();
+
+        if (address.number() != null) {
+            this.number = address.number();
+        }
+
+        if (address.complement() != null) {
+            this.complement = address.complement();
         }
     }
 }

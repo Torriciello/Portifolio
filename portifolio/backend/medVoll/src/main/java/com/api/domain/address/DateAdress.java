@@ -19,4 +19,9 @@ public record DateAdress(
     
         @NotBlank String city) {
 
+    public void updateAdress(DateAdress address) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateAdress'");
+    }
+
 }

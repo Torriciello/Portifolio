@@ -48,13 +48,14 @@ public class Doctor {
     @Valid
     private Address address;
 
-    public Doctor(DoctorDetails doctorDetails) {
+    public Doctor(RegisterDoctor registerDoctor) {
         this.ativo = true;
-        this.name = doctorDetails.name();
-        this.phone = doctorDetails.phone();
-        this.crm = doctorDetails.crm();
-        this.especialidade = doctorDetails.especialidade();
-        this.address = new Address();
+        this.name = registerDoctor.name();
+        this.phone = registerDoctor.phone();
+        this.crm = registerDoctor.crm();
+        this.cpf = registerDoctor.cpf();
+        this.especialidade = registerDoctor.especialidade();
+        this.address = registerDoctor.address();
     }
 
     public void update(UpdateDoctor updateDoctor) {
@@ -65,7 +66,7 @@ public class Doctor {
             this.phone = updateDoctor.phone();
         }
         if (updateDoctor.address() != null) {
-            this.address.updateAdress(address);
+            this.address.updateAdress(updateDoctor.address());
         }
     }
 

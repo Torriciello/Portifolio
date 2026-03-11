@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.api.domain.doctor.Doctor;
 import com.api.domain.doctor.DoctorDetails;
 import com.api.domain.doctor.DoctorService;
+import com.api.domain.doctor.RegisterDoctor;
 import com.api.domain.doctor.UpdateDoctor;
-
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -31,13 +31,15 @@ public class DoctorController {
     private DoctorService doctorService;
 
     @PostMapping("/register")
-    public ResponseEntity<DoctorDetails> register(@RequestBody @Valid Doctor doctor) {
-        Doctor newDoctor = doctorService.register(doctor);
-        return ResponseEntity.ok(new DoctorDetails(newDoctor));
+    @Transactional
+    public ResponseEntity<DoctorDetails> register(@RequestBody @Valid RegisterDoctor data) {
+        var doctor = new Doctor(data);
+        doctorService.register(doctor);
+        return ResponseEntity.ok(new DoctorDetails(doctor));
     }
 
     @GetMapping
-    public Page<DoctorDetails> listar(@PageableDefault(size = 10, sort = { "nome" }) Pageable pageable) {
+    public Page<DoctorDetails> list(@PageableDefault(size = 10, sort = { "nome" }) Pageable pageable) {
         return doctorService.findAllByAtivoTrue(pageable).map(DoctorDetails::new);
     }
 

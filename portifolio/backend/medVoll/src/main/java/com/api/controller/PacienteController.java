@@ -16,7 +16,6 @@ import com.api.domain.patient.Patient;
 import com.api.domain.patient.PatientDetails;
 import com.api.domain.patient.PatientService;
 import com.api.domain.patient.UpdatePatient;
-
 import org.springframework.web.bind.annotation.RequestBody;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
@@ -28,24 +27,24 @@ import jakarta.validation.Valid;
 public class PacienteController {
 
     @Autowired
-    private PatientService pacienteService;
+    private PatientService patientService;
 
     @PostMapping("/register")
     public ResponseEntity<PatientDetails> register(@RequestBody @Valid Patient patient) {
-        Patient novoPaciente = pacienteService.register(patient);
-        return ResponseEntity.ok(new PatientDetails(novoPaciente));
+        Patient newPatient = patientService.register(patient);
+        return ResponseEntity.ok(new PatientDetails(newPatient));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<PatientDetails> list(@PathVariable Long id) {
-        Patient patient = pacienteService.list(id);
+        Patient patient = patientService.list(id);
         return ResponseEntity.ok(new PatientDetails(patient));
     }
 
     @GetMapping
     public ResponseEntity<Page<PatientDetails>> listar(
-            @PageableDefault(size = 10, sort = { "name" }) Pageable paginacao) {
-        var page = pacienteService.findAllByAtivoTrue(paginacao)
+            @PageableDefault(size = 10, sort = { "name" }) Pageable pageable) {
+        var page = patientService.findAllByAtivoTrue(pageable)
                 .map(PatientDetails::new);
         return ResponseEntity.ok(page);
     }
@@ -53,16 +52,16 @@ public class PacienteController {
     @PutMapping
     @Transactional
     public ResponseEntity<PatientDetails> update(@RequestBody @Valid UpdatePatient updatePatient) {
-        var paciente = pacienteService.getReferenceById(updatePatient.id());
-        paciente.update(updatePatient);
-        return ResponseEntity.ok(new PatientDetails(paciente));
+        var patient = patientService.getReferenceById(updatePatient.id());
+        patient.update(updatePatient);
+        return ResponseEntity.ok(new PatientDetails(patient));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<PatientDetails> excluir(@PathVariable Long id) {
-        var paciente = pacienteService.getReferenceById(id);
-        paciente.excluir();
+    public ResponseEntity<Void> excluir(@PathVariable Long id) {
+        var patient = patientService.getReferenceById(id);
+        patient.excluir();
         return ResponseEntity.noContent().build();
     }
 

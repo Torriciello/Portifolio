@@ -30,4 +30,22 @@ public class PatientService {
     public Patient getReferenceById(Long id) {
         return patientRepository.getReferenceById(id);
     }
+
+    public Patient update(Patient patient) {
+
+        Patient patientDB = patientRepository.findById(patient.getId())
+                .orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
+
+        patientDB.setName(patient.getName());
+        patientDB.setEmail(patient.getEmail());
+        patientDB.setPhone(patient.getPhone());
+        patientDB.setAddress(patient.getAddress());
+
+        return patientRepository.save(patientDB);
+    }
+
+    public void excluir(Long id) {
+    var patient = patientRepository.getReferenceById(id);
+    patient.excluir();
+}
 }
