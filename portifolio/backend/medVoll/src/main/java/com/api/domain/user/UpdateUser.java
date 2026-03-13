@@ -1,16 +1,23 @@
 package com.api.domain.user;
 
+import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * DTO for updating existing User information.
+ * Fields are optional to support partial updates (PATCH style).
+ */
 @Getter
 @Setter
 public class UpdateUser {
-    public String Email;
 
-    public Long RoleId;
+    @Email(message = "Invalid email format")
+    private String email;
 
-    public String name;
+    private Long roleId;
 
-    public String cpf;
+    private String name;
+
+    private String cpf;
 }

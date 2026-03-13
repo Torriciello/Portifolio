@@ -2,21 +2,25 @@ package com.api.domain.address;
 
 import jakarta.validation.constraints.NotBlank;
 
+/**
+ * Data Transfer Object (Record) for address information.
+ * Uses Bean Validation to ensure required fields are not null or empty.
+ */
 public record DateAdress(
-        @NotBlank String cep,
+                @NotBlank(message = "CEP is required") String cep,
 
-        @NotBlank String publicPlace,
+                @NotBlank(message = "Street/Public place is required") String publicPlace,
 
-        @NotBlank String number,
+                @NotBlank(message = "House/Building number is required") String number,
 
-        String complement,
+                // Complement is optional, so no @NotBlank here
+                String complement,
 
-        @NotBlank String neighborhood,
+                @NotBlank(message = "Neighborhood is required") String neighborhood,
 
-        @NotBlank String locality,
+                @NotBlank(message = "Locality is required") String locality,
 
-        @NotBlank String uf,
+                @NotBlank(message = "State/UF is required") String uf,
 
-        @NotBlank String city) {
-
+                @NotBlank(message = "City is required") String city) {
 }

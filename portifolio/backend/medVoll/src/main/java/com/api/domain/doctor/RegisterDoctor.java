@@ -5,19 +5,24 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+/**
+ * Data Transfer Object (Record) for registering a new doctor.
+ * Includes validation constraints to ensure data integrity at the API entry
+ * point.
+ */
 public record RegisterDoctor(
 
-        @NotBlank String name,
+                @NotBlank(message = "Name is required") String name,
 
-        @NotBlank String cpf,
+                @NotBlank(message = "CPF is required") String cpf,
 
-        @NotBlank String crm,
+                @NotBlank(message = "CRM (Medical License) is required") String crm,
 
-        @NotBlank String phone,
+                @NotBlank(message = "Phone number is required") String phone,
 
-        @NotNull Specialty especialidade,
+                @NotNull(message = "Specialty is mandatory") Specialty especialidade,
 
-        @NotNull @Valid Address address
-
-) {
+                @NotNull(message = "Address data is mandatory") @Valid // Ensures the fields inside the Address object
+                                                                       // are also validated
+                Address address) {
 }

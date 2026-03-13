@@ -6,6 +6,10 @@ import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
+/**
+ * Represents a physical address as an embeddable component for other entities.
+ * In the database, these fields will be columns within the owner's table.
+ */
 @Embeddable
 @Getter
 @Setter
@@ -13,14 +17,19 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class Address {
     private String cep;
-    private String publicPlace;
+    private String publicPlace; // Street or Avenue
     private String number;
     private String complement;
     private String neighborhood;
     private String locality;
-    private String uf;
+    private String uf; // State initials (e.g., SP, RJ)
     private String city;
 
+    /**
+     * Constructor to initialize address from a Data Transfer Object (DTO).
+     * 
+     * @param dateAdress DTO containing initial address data.
+     */
     public Address(DateAdress dateAdress) {
         this.publicPlace = dateAdress.publicPlace();
         this.neighborhood = dateAdress.neighborhood();
@@ -32,6 +41,12 @@ public class Address {
         this.complement = dateAdress.complement();
     }
 
+    /**
+     * Updates address fields only if the new values are not null.
+     * This follows the partial update pattern.
+     * 
+     * @param address DTO containing the fields to be updated.
+     */
     public void updateAdress(DateAdress address) {
 
         if (address.publicPlace() != null) {

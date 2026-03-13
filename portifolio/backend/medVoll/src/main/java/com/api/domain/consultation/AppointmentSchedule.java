@@ -13,6 +13,11 @@ import com.api.domain.patient.PatientRepository;
 
 import java.util.List;
 
+/**
+ * Service class responsible for the business logic of scheduling and canceling
+ * appointments.
+ * It coordinates validators and repositories to ensure data integrity.
+ */
 @Service
 public class AppointmentSchedule {
 
@@ -25,56 +30,85 @@ public class AppointmentSchedule {
     @Autowired
     private PatientRepository patientRepository;
 
+    // Spring automatically injects all implementations of these interfaces into
+    // these lists
     @Autowired
     private List<AppointmentSchedulingValidator> validators;
 
     @Autowired
     private List<ConsultationCancellationValidator> validatorsCancellation;
 
+    /**
+     * Orchestrates the scheduling of a new consultation.
+     * 
+     * @param data DTO containing the desired appointment details.
+     * @return DataDetailsQuery with the confirmed appointment information.
+     */
     public DataDetailsQuery schedule(DetailsConsultation data) {
+        // Basic existence checks before running complex business rules
         if (!patientRepository.existsById(data.idPatient())) {
-            throw new ValidationException("Id do paciente informado não existe!");
+            throw new ValidationException("The provided Patient ID does not exist!");
         }
 
         if (data.idDoctor() != null && !doctorRepository.existsById(data.idDoctor())) {
-            throw new ValidationException("Id do médico informado não existe!");
+            throw new ValidationException("The provided Doctor ID does not exist!");
         }
 
+        // Strategy Pattern: Runs all business rule validations (Lead time,
+        // availability, etc.)
         validators.forEach(v -> v.validate(data));
 
         var patient = patientRepository.getReferenceById(data.idPatient());
         var doctor = chooseDoctor(data);
+
         if (doctor == null) {
-            throw new ValidationException("Não existe médico disponível nessa data!");
+            throw new ValidationException("No doctor is available for the selected date and specialty!");
         }
 
+        // Persists the new appointment
         var consultation = new Consultation(null, doctor, patient, data.date(), null);
         consultationRepository.save(consultation);
 
         return new DataDetailsQuery(consultation);
     }
 
+    /**
+     * Orchestrates the cancellation of an existing consultation.
+     * 
+     * @param data DTO containing consultation ID and cancellation reason.
+     */
     public void cancel(CancellationDataConsultation data) {
         if (!consultationRepository.existsById(data.idConsultation())) {
-            throw new ValidationException("Id da consulta informado não existe!");
+            throw new ValidationException("The provided Consultation ID does not exist!");
         }
 
+        // Runs all cancellation-specific business rules (e.g., 24h advance notice)
         validatorsCancellation.forEach(v -> v.validate(data));
 
         var consultation = consultationRepository.getReferenceById(data.idConsultation());
         consultation.cancel(data.reasonCancellation());
+        // No explicit .save() needed if within a @Transactional context in the
+        // Controller
     }
 
+    /**
+     * Logic to select a doctor: either the requested one or a random available one
+     * by specialty.
+     * 
+     * @param data Consultation details.
+     * @return A Doctor entity or null if none are available.
+     */
     private Doctor chooseDoctor(DetailsConsultation data) {
         if (data.idDoctor() != null) {
             return doctorRepository.getReferenceById(data.idDoctor());
         }
 
         if (data.specialty() == null) {
-            throw new ValidationException("Especialidade é obrigatória quando médico não for escolhido!");
+            throw new ValidationException("Specialty is required when a specific doctor is not chosen!");
         }
 
+        // Custom query to find an available doctor of a specific specialty at a
+        // specific time
         return doctorRepository.chooseRandomFreeDoctorDate(data.specialty(), data.date());
     }
-
 }

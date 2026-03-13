@@ -12,42 +12,57 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * Main security configuration class.
+ * Defines access rules, authentication mechanisms, and filter chains.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    @Autowired
-    private SecurityFilter securityFilter;
+        @Autowired
+        private SecurityFilter securityFilter;
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        /**
+         * Configures the security filter chain.
+         * Sets stateless session policy, disables CSRF (not needed for JWT),
+         * and defines public/private endpoints.
+         */
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        return http
-                .csrf(csrf -> csrf.disable())
-                .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/user/register").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
-                        .requestMatchers(
-                                "/v3/api-docs/**",
-                                "/swagger-ui.html",
-                                "/swagger-ui/**"
-                        ).permitAll()
-                        .requestMatchers("/public/**").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
-    }
+                return http
+                                .csrf(csrf -> csrf.disable()) // Disabled as we are using JWT, not cookies
+                                .sessionManagement(session -> session
+                                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                                .authorizeHttpRequests(auth -> auth
+                                                // Public endpoints: Registration and Login
+                                                .requestMatchers(HttpMethod.POST, "/user/register").permitAll()
+                                                .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
-    }
+                                                // Swagger/OpenAPI documentation (accessible for developers)
+                                                .requestMatchers(
+                                                                "/v3/api-docs/**",
+                                                                "/swagger-ui.html",
+                                                                "/swagger-ui/**")
+                                                .permitAll()
+
+                                                // Generic public assets
+                                                .requestMatchers("/public/**").permitAll()
+
+                                                // All other requests must be authenticated
+                                                .anyRequest().authenticated())
+                                // Adds our custom JWT filter before the standard username/password filter
+                                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                                .build();
+        }
+
+        /**
+         * Exposes the AuthenticationManager as a Bean so it can be used
+         * in the AuthController to perform programmatic login.
+         */
+        @Bean
+        public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+                return config.getAuthenticationManager();
+        }
 }
-
-
-// http://localhost:8080/v3/api-docs 
-//  http://localhost:8080/swagger-ui/index.html#/auth-controller/login
